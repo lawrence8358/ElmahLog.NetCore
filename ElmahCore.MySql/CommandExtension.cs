@@ -1,5 +1,5 @@
-﻿using System;
-using MySql.Data.MySqlClient;
+using System;
+using MySqlConnector;
 
 namespace ElmahCore.MySql
 {

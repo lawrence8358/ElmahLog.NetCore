@@ -1,67 +1,99 @@
-This project is licensed under the terms of the Apache license 2.0.
+This project is licensed under the terms of the Apache License 2.0.
 
-# Using ElmahCore
-ELMAH for Net.Standard and Net.Core (3.1, 5, 6)
+# Elmah.Core
 
-![alt text](https://github.com/ElmahCore/ElmahCore/raw/master/images/elmah-new-ui.png)
+ELMAH for ASP.NET Core (.NET Standard 2.0 / .NET 8+)
 
-Add nuget package **elmahcore**
+> **Forked from [ElmahCore/ElmahCore](https://github.com/ElmahCore/ElmahCore)** and republished as `Elmah.Core` v3.0.0 with updated dependencies, security fixes, and .NET 8/10 support.
 
-## Simple usage
- Startup.cs
-```csharp
-1)	services.AddElmah() in ConfigureServices 
-2)	app.UseElmah(); in Configure
+![Elmah.Core UI](https://github.com/lawrence8358/Elmah.Core/raw/master/images/elmah-new-ui.png)
+
+## Installation
+
+Install the main NuGet package:
+
 ```
-`app.UseElmah()` must be after initializing other exception handling middleware, such as (UseExceptionHandler, UseDeveloperExceptionPage, etc.)
-
-Default elmah path `~/elmah`.
-
-## Change URL path
-```csharp
-services.AddElmah(options => options.Path = "you_path_here")
+dotnet add package Elmah.Core
 ```
-## Restrict access to the Elmah url
+
+Optional storage providers:
+
+| Package | Storage |
+|---|---|
+| [Elmah.Core.Sql](https://www.nuget.org/packages/Elmah.Core.Sql) | MS SQL Server |
+| [Elmah.Core.MySql](https://www.nuget.org/packages/Elmah.Core.MySql) | MySQL |
+| [Elmah.Core.Postgresql](https://www.nuget.org/packages/Elmah.Core.Postgresql) | PostgreSQL |
+
+## Supported Frameworks
+
+- .NET Standard 2.0 (compatible with .NET Framework 4.6.1+, .NET Core 2.0+)
+- .NET 8.0 and above
+
+## Simple Usage
+
+**Program.cs** (minimal hosting, .NET 6+):
+```csharp
+builder.Services.AddElmah();  // in service registration
+app.UseElmah();               // in middleware pipeline
+```
+
+**Startup.cs** (traditional):
+```csharp
+// ConfigureServices
+services.AddElmah();
+
+// Configure - must be after UseExceptionHandler / UseDeveloperExceptionPage
+app.UseElmah();
+```
+
+Default Elmah path: `~/elmah`
+
+## Change URL Path
+```csharp
+services.AddElmah(options => options.Path = "errors")
+```
+
+## Restrict Access
 ```csharp
 services.AddElmah(options =>
 {
-        options.OnPermissionCheck = context => context.User.Identity.IsAuthenticated;
+    options.OnPermissionCheck = context => context.User.Identity.IsAuthenticated;
 });
 ```
-**Note:** `app.UseElmah();` needs to be after 
-```
-app.UseAuthentication();
-app.UseAuthorization();
-app.UseElmah();
-```
-or the user will be redirected to the sign in screen even if he is authenticated.
-## Change Error Log type
-You can create your own error log, which will store errors anywhere.
+
+**Note:** `app.UseElmah()` must come after `app.UseAuthentication()` and `app.UseAuthorization()`.
+
+## Change Error Log Type
+
+Implement your own:
 ```csharp
-    class MyErrorLog: ErrorLog
-    //implement ErrorLog
+class MyErrorLog : ErrorLog { ... }
 ```
- This ErrorLogs available in board:
- - MemoryErrorLog – store errors in memory (by default)
- - XmlFileErrorLog – store errors in XML files
- - SqlErrorLog - store errors in MS SQL (add reference to [ElmahCore.Sql](https://www.nuget.org/packages/ElmahCore.Sql))
- - MysqlErrorLog - store errors in MySQL (add reference to [ElmahCore.MySql](https://www.nuget.org/packages/ElmahCore.MySql))
- - PgsqlErrorLog - store errors in PostgreSQL (add reference to [ElmahCore.Postgresql](https://www.nuget.org/packages/ElmahCore.Postgresql))
+
+Built-in options:
+- `MemoryErrorLog` — in-memory (default)
+- `XmlFileErrorLog` — XML files on disk
+- `SqlErrorLog` — MS SQL Server (requires `Elmah.Core.Sql`)
+- `MySqlErrorLog` — MySQL (requires `Elmah.Core.MySql`)
+- `PgsqlErrorLog` — PostgreSQL (requires `Elmah.Core.Postgresql`)
+
 ```csharp
 services.AddElmah<XmlFileErrorLog>(options =>
 {
-    options.LogPath = "~/log"; // OR options.LogPath = "с:\errors";
+    options.LogPath = "~/log"; // or options.LogPath = @"C:\errors";
 });
 ```
+
 ```csharp
 services.AddElmah<SqlErrorLog>(options =>
 {
     options.ConnectionString = "connection_string";
-    options.SqlServerDatabaseSchemaName = "Errors"; //Defaults to dbo if not set
-    options.SqlServerDatabaseTableName = "ElmahError"; //Defaults to ELMAH_Error if not set
+    options.SqlServerDatabaseSchemaName = "Errors";   // default: dbo
+    options.SqlServerDatabaseTableName  = "ElmahError"; // default: ELMAH_Error
 });
 ```
-## Raise exception
+
+## Raise Exception Manually
 ```csharp
 public IActionResult Test()
 {
@@ -69,117 +101,120 @@ public IActionResult Test()
     ...
 }
 ```
-## Microsoft.Extensions.Logging support
-Since version 2.0 ElmahCore support Microsoft.Extensions.Logging
-![alt text](https://github.com/ElmahCore/ElmahCore/raw/master/images/elmah-log.png)
+
+## Microsoft.Extensions.Logging Support
+
+Since v2.0, Elmah.Core integrates with `Microsoft.Extensions.Logging`.
+
+![Logging](https://github.com/lawrence8358/Elmah.Core/raw/master/images/elmah-log.png)
 
 ## Source Preview
-Since version 2.0.1 ElmahCore support source preview.
-Just add paths to source files.
+
+Since v2.0.1 — configure source file paths:
 ```csharp
 services.AddElmah(options =>
 {
-   options.SourcePaths = new []
-   {
-      @"D:\tmp\ElmahCore.DemoCore3",
-      @"D:\tmp\ElmahCore.Mvc",
-      @"D:\tmp\ElmahCore"
-   };
+    options.SourcePaths = new[]
+    {
+        @"D:\src\MyProject",
+        @"D:\src\MyProject.Mvc"
+    };
 });
 ```
 
-## Log the request body
-Since version 2.0.5 ElmahCore can log the request body.
+## Log the Request Body
 
-## Logging SQL request body
-Since version 2.0.6 ElmahCore can log the SQL request body.
-![alt text](https://github.com/ElmahCore/ElmahCore/raw/master/images/elmah-4.png)
+Since v2.0.5, Elmah.Core can log the HTTP request body.
 
-## Logging method parameters
-Since version 2.0.6 ElmahCore can log method parameters.
-![alt text](https://github.com/ElmahCore/ElmahCore/raw/master/images/elmah-5.png)
+## SQL Query Logging
+
+Since v2.0.6, Elmah.Core intercepts and logs SQL commands via `DiagnosticSource`.
+
+![SQL Log](https://github.com/lawrence8358/Elmah.Core/raw/master/images/elmah-4.png)
+
+## Method Parameter Logging
+
+Since v2.0.6:
 ```csharp
 using ElmahCore;
-...
 
 public void TestMethod(string p1, int p2)
 {
-    // Logging method parameters
     this.LogParams((nameof(p1), p1), (nameof(p2), p2));
-    ...
+    // ...
 }
-
 ```
 
-## Using UseElmahExceptionPage
-You can replace UseDeveloperExceptionPage to UseElmahExceptionPage
+![Parameters](https://github.com/lawrence8358/Elmah.Core/raw/master/images/elmah-5.png)
+
+## Developer Exception Page
+
 ```csharp
-if (env.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
-   //app.UseDeveloperExceptionPage();
-   app.UseElmahExceptionPage();
+    // app.UseDeveloperExceptionPage();
+    app.UseElmahExceptionPage();
 }
 ```
 
-## Using Notifiers
-You can create your own notifiers by implement IErrorNotifier or IErrorNotifierWithId interface and add notifier to Elmah options:
+## Notifiers
+
+Implement `IErrorNotifier` or `IErrorNotifierWithId` and register:
 ```csharp
 services.AddElmah<XmlFileErrorLog>(options =>
 {
-    options.Path = @"errors";
-    options.LogPath = "~/logs";
-    options.Notifiers.Add(new ErrorMailNotifier("Email",emailOptions));
+    options.Notifiers.Add(new ErrorMailNotifier("Email", emailOptions));
 });
 ```
-Each notifier must have unique name.
-## Using Filters
-You can use Elmah XML filter configuration in separate file, create and add custom filters:
+
+## Filters
+
+XML-based or code-based error filtering:
 ```csharp
 services.AddElmah<XmlFileErrorLog>(options =>
 {
     options.FiltersConfig = "elmah.xml";
     options.Filters.Add(new MyFilter());
-})
+});
 ```
-Custom filter must implement IErrorFilter.
-XML filter config example:
-```csharp
+
+XML filter example:
+```xml
 <?xml version="1.0" encoding="utf-8" ?>
 <elmah>
-	<errorFilter>
-		<notifiers>
-			<notifier name="Email"/>
-		</notifiers>
-		<test>
-			<and>
-				<greater binding="HttpStatusCode" value="399" type="Int32" />
-				<lesser  binding="HttpStatusCode" value="500" type="Int32" />
-			</and> 
-		</test>
-	</errorFilter>
+  <errorFilter>
+    <notifiers>
+      <notifier name="Email"/>
+    </notifiers>
+    <test>
+      <and>
+        <greater binding="HttpStatusCode" value="399" type="Int32" />
+        <lesser  binding="HttpStatusCode" value="500" type="Int32" />
+      </and>
+    </test>
+  </errorFilter>
 </elmah>
 ```
-see more [here](https://elmah.github.io/a/error-filtering/examples/)
 
-JavaScript filters not yet impemented :(
+See more at [elmah.github.io](https://elmah.github.io/a/error-filtering/examples/).
 
-Add notifiers to errorFilter node if you do not want to send notifications
-Filtered errors will be logged, but will not be sent.
+## Search and Filters
 
-## Search And Filters
+Since v2.2.0 — full-text search and multi-column filtering.
 
-Since version 2.2.0 tou can use full-text search and multiple filter.
+![Filters 1](https://github.com/lawrence8358/Elmah.Core/raw/master/images/elmah-filters-1.png)
+![Filters 2](https://github.com/lawrence8358/Elmah.Core/raw/master/images/elmah-filters-2.png)
+![Filters 3](https://github.com/lawrence8358/Elmah.Core/raw/master/images/elmah-filters-3.png)
 
-Full-text search work on analyzed text fields.
+Currently supported by Memory and XmlFile error logs only.
 
-![alt text](https://github.com/ElmahCore/ElmahCore/raw/master/images/elmah-filters-1.png)
+## Demo Projects
 
-Filters are available through either the **Add filter** button.
+| Project | Framework | Description |
+|---|---|---|
+| `Demos/ElmahCore.DemoCore8` | .NET 8 | Startup.cs + SqlErrorLog |
+| `Demos/ElmahCore.DemoCore10` | .NET 10 | Minimal hosting + XmlFileErrorLog + Notifiers + Filters |
 
-![alt text](https://github.com/ElmahCore/ElmahCore/raw/master/images/elmah-filters-2.png)
+## License
 
-Or you can use **filter icon** to the right of the error field.
-
-![alt text](https://github.com/ElmahCore/ElmahCore/raw/master/images/elmah-filters-3.png)
-
-Currently supports only Memory and XmlFile error logs.
+[Apache License 2.0](LICENSE) — Copyright 2018 ElmahCore, Portions Copyright © 2026 Lawrence Shen

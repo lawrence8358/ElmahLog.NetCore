@@ -25,7 +25,13 @@ namespace ElmahCore
         ///     Initializes a new instance of the <see cref="XmlFileErrorLog" /> class
         ///     using a dictionary of configured settings.
         /// </summary>
+#if NETSTANDARD2_0
+#pragma warning disable CS0618 // IHostingEnvironment is obsolete but required for netstandard2.0
         public XmlFileErrorLog(IOptions<ElmahOptions> options, IHostingEnvironment hostingEnvironment)
+#pragma warning restore CS0618
+#else
+        public XmlFileErrorLog(IOptions<ElmahOptions> options, IWebHostEnvironment hostingEnvironment)
+#endif
         {
             _logPath = options.Value.LogPath;
             if (_logPath.StartsWith("~/"))
@@ -33,17 +39,14 @@ namespace ElmahCore
                     _logPath.Substring(2));
         }
 
-
         /// <summary>
         ///     Gets the path to where the log is stored.
         /// </summary>
-
         protected virtual string LogPath => _logPath;
 
         /// <summary>
         ///     Gets the name of this error log implementation.
         /// </summary>
-
         public override string Name => "XML File-Based Error Log";
 
         /// <summary>
@@ -141,7 +144,7 @@ namespace ElmahCore
                     .Select(LoadErrorLogEntry)
                     .Where(e => ErrorLogFilterHelper.IsMatched(e, searchText, filters)).ToList();
                 totalCount = fEntries.Count;
-                
+
                 entries = fEntries
                     .Skip(errorIndex)
                     .Take(pageSize);

@@ -1,31 +1,26 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>2.1.2</Version>
-    <PackageProjectUrl>https://github.com/ElmahCore/ElmahCore</PackageProjectUrl>
-    <AssemblyVersion>2.1.2.0</AssemblyVersion>
-    <FileVersion>2.1.2.0</FileVersion>
+    <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
+    <LangVersion>8.0</LangVersion>
+    <Version>3.0.0</Version>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+    <FileVersion>3.0.0.0</FileVersion>
     <AssemblyName>ElmahCore.Mvc</AssemblyName>
-    <PackageId>ElmahCore</PackageId>
-    <Authors>ElmahCore</Authors>
-    <Company>ElmahCore</Company>
-    <Product>ElmahCore</Product>
+    <PackageId>Elmah.Core</PackageId>
+    <Authors>Lawrence Shen</Authors>
+    <Product>Elmah.Core</Product>
     <NeutralLanguage>en-001</NeutralLanguage>
-    <RepositoryUrl>https://www.nuget.org/packages/ElmahCore</RepositoryUrl>
-    <PackageTags>net-core elmah mvc-core asp-net-core asp-net-core-mvc elmah-core netcore netcore2 netcore20 mvc mvc6 aspnetcore aspnetcoremvc</PackageTags>
-    <Description>ELMAH for ASP.NET Core</Description>
-    <Copyright>ElmahCore</Copyright>
+    <PackageProjectUrl>https://github.com/lawrence8358/Elmah.Core</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/lawrence8358/Elmah.Core</RepositoryUrl>
+    <PackageTags>elmah asp-net-core aspnetcore error-log exception-logging middleware</PackageTags>
+    <Description>ELMAH for ASP.NET Core - Error Logging Modules and Handlers</Description>
+    <Copyright>Copyright © Lawrence Shen</Copyright>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <LangVersion>8</LangVersion>
   </PropertyGroup>
-
-<PropertyGroup>
-  <MinVerDefaultPreReleasePhase>preview</MinVerDefaultPreReleasePhase>
-</PropertyGroup>
 
   <ItemGroup>
     <None Remove="wwwroot\index.html" />
@@ -43,18 +38,25 @@
     <EmbeddedResource Include="wwwroot\fonts\*.*" />
   </ItemGroup>
 
+  <!-- All TFMs: HtmlAgilityPack supports netstandard2.0+ -->
   <ItemGroup>
-    <PackageReference Include="HtmlAgilityPack" Version="1.11.29" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.12.4" />
+  </ItemGroup>
+
+  <!-- netstandard2.0: explicit packages -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
-    <PackageReference Include="MinVer" Version="2.5.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
-    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="5.0.1" />
-    <PackageReference Include="System.Text.Json" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.3" />
+    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="8.0.1" />
+    <PackageReference Include="System.Text.Json" Version="8.0.6" />
+  </ItemGroup>
+
+  <!-- net8.0: use shared framework + modern SqlClient -->
+  <ItemGroup Condition="'$(TargetFramework)' != 'netstandard2.0'">
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.1" />
   </ItemGroup>
 
   <ItemGroup>

@@ -41,9 +41,17 @@ namespace ElmahCore
         ///     Initializes a new instance of the <see cref="ApplicationException" /> class
         ///     with serialized data.
         /// </summary>
+        #pragma warning disable SYSLIB0051
+        #pragma warning disable SYSLIB0051
+        #pragma warning disable SYSLIB0051
+        #pragma warning disable SYSLIB0051
         protected ApplicationException(SerializationInfo info, StreamingContext context) :
             base(info, context)
         {
         }
+#pragma warning restore SYSLIB0051
+#pragma warning restore SYSLIB0051
+#pragma warning restore SYSLIB0051
+#pragma warning restore SYSLIB0051
     }
 }

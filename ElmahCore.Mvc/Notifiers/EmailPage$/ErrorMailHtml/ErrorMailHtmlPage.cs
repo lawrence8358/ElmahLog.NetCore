@@ -6,7 +6,7 @@
 //
 //  Author(s):
 //
-//      James Driscoll, mailto:jamesdriscoll@btinternet.com
+//      Lawrence Shen, mailto:lawrence8358@hotmail.com
 //      Atif Aziz, http://www.raboof.com
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
