@@ -7,12 +7,12 @@
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <FileVersion>3.0.0.0</FileVersion>
     <AssemblyName>ElmahCore.MySql</AssemblyName>
-    <PackageId>Elmah.NetCore.MySql</PackageId>
+    <PackageId>ElmahLog.NetCore.MySql</PackageId>
     <Authors>Lawrence Shen</Authors>
-    <Product>Elmah.NetCore.MySql</Product>
+    <Product>ElmahLog.NetCore.MySql</Product>
     <NeutralLanguage>en-001</NeutralLanguage>
-    <PackageProjectUrl>https://github.com/lawrence8358/Elmah.Core</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/lawrence8358/Elmah.Core</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/lawrence8358/ElmahLog.NetCore</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/lawrence8358/ElmahLog.NetCore</RepositoryUrl>
     <PackageTags>elmah asp-net-core aspnetcore error-log mysql</PackageTags>
     <Description>ELMAH for ASP.NET Core - MySQL error log storage (MIT-licensed MySqlConnector)</Description>
     <Copyright>Copyright © Lawrence Shen</Copyright>
@@ -21,6 +21,8 @@
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <!-- MySqlConnector 2.5.0 natively targets netstandard2.0 and net8.0 -->
@@ -38,6 +40,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ElmahCore\ElmahCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>

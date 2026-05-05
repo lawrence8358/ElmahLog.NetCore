@@ -7,12 +7,12 @@
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <FileVersion>3.0.0.0</FileVersion>
     <AssemblyName>ElmahCore.Sql</AssemblyName>
-    <PackageId>Elmah.NetCore.Sql</PackageId>
+    <PackageId>ElmahLog.NetCore.Sql</PackageId>
     <Authors>Lawrence Shen</Authors>
-    <Product>Elmah.NetCore.Sql</Product>
+    <Product>ElmahLog.NetCore.Sql</Product>
     <NeutralLanguage>en-001</NeutralLanguage>
-    <PackageProjectUrl>https://github.com/lawrence8358/Elmah.Core</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/lawrence8358/Elmah.Core</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/lawrence8358/ElmahLog.NetCore</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/lawrence8358/ElmahLog.NetCore</RepositoryUrl>
     <PackageTags>elmah asp-net-core aspnetcore error-log mssql sqlserver</PackageTags>
     <Description>ELMAH for ASP.NET Core - MS SQL Server error log storage</Description>
     <Copyright>Copyright © Lawrence Shen</Copyright>
@@ -20,6 +20,8 @@
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <!-- netstandard2.0: SqlClient 5.x (last version with netstandard2.0 support) -->
@@ -40,6 +42,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ElmahCore\ElmahCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>

@@ -1,28 +1,28 @@
 This project is licensed under the terms of the Apache License 2.0.
 
-# Elmah.NetCore
+# ElmahLog.NetCore
 
 ELMAH for ASP.NET Core (.NET Standard 2.0 / .NET 8+)
 
-> **Forked from [ElmahCore/ElmahCore](https://github.com/ElmahCore/ElmahCore)** and republished as `Elmah.NetCore` v3.0.0 with updated dependencies, security fixes, and .NET 8/10 support.
+> **Forked from [ElmahCore/ElmahCore](https://github.com/ElmahCore/ElmahCore)** and republished as `ElmahLog.NetCore` v3.0.0 with updated dependencies, security fixes, and .NET 8/10 support.
 
-![Elmah.Core UI](https://github.com/lawrence8358/Elmah.Core/raw/master/images/elmah-new-ui.png)
+![Elmah.Core UI](https://github.com/lawrence8358/ElmahLog.NetCore/raw/master/images/elmah-new-ui.png)
 
 ## Installation
 
 Install the main NuGet package:
 
 ```
-dotnet add package Elmah.NetCore
+dotnet add package ElmahLog.NetCore
 ```
 
 Optional storage providers:
 
 | Package | Storage |
 |---|---|
-| [Elmah.NetCore.Sql](https://www.nuget.org/packages/Elmah.NetCore.Sql) | MS SQL Server |
-| [Elmah.NetCore.MySql](https://www.nuget.org/packages/Elmah.NetCore.MySql) | MySQL |
-| [Elmah.NetCore.Postgresql](https://www.nuget.org/packages/Elmah.NetCore.Postgresql) | PostgreSQL |
+| [ElmahLog.NetCore.Sql](https://www.nuget.org/packages/ElmahLog.NetCore.Sql) | MS SQL Server |
+| [ElmahLog.NetCore.MySql](https://www.nuget.org/packages/ElmahLog.NetCore.MySql) | MySQL |
+| [ElmahLog.NetCore.Postgresql](https://www.nuget.org/packages/ElmahLog.NetCore.Postgresql) | PostgreSQL |
 
 ## Supported Frameworks
 
@@ -73,9 +73,9 @@ class MyErrorLog : ErrorLog { ... }
 Built-in options:
 - `MemoryErrorLog` — in-memory (default)
 - `XmlFileErrorLog` — XML files on disk
-- `SqlErrorLog` — MS SQL Server (requires `Elmah.NetCore.Sql`)
-- `MySqlErrorLog` — MySQL (requires `Elmah.NetCore.MySql`)
-- `PgsqlErrorLog` — PostgreSQL (requires `Elmah.NetCore.Postgresql`)
+- `SqlErrorLog` — MS SQL Server (requires `ElmahLog.NetCore.Sql`)
+- `MySqlErrorLog` — MySQL (requires `ElmahLog.NetCore.MySql`)
+- `PgsqlErrorLog` — PostgreSQL (requires `ElmahLog.NetCore.Postgresql`)
 
 ```csharp
 services.AddElmah<XmlFileErrorLog>(options =>
@@ -104,9 +104,9 @@ public IActionResult Test()
 
 ## Microsoft.Extensions.Logging Support
 
-Since v2.0, Elmah.NetCore integrates with `Microsoft.Extensions.Logging`.
+Since v2.0, ElmahLog.NetCore integrates with `Microsoft.Extensions.Logging`.
 
-![Logging](https://github.com/lawrence8358/Elmah.Core/raw/master/images/elmah-log.png)
+![Logging](https://github.com/lawrence8358/ElmahLog.NetCore/raw/master/images/elmah-log.png)
 
 ## Source Preview
 
@@ -124,13 +124,13 @@ services.AddElmah(options =>
 
 ## Log the Request Body
 
-Since v2.0.5, Elmah.NetCore can log the HTTP request body.
+Since v2.0.5, ElmahLog.NetCore can log the HTTP request body.
 
 ## SQL Query Logging
 
-Since v2.0.6, Elmah.NetCore intercepts and logs SQL commands via `DiagnosticSource`.
+Since v2.0.6, ElmahLog.NetCore intercepts and logs SQL commands via `DiagnosticSource`.
 
-![SQL Log](https://github.com/lawrence8358/Elmah.Core/raw/master/images/elmah-4.png)
+![SQL Log](https://github.com/lawrence8358/ElmahLog.NetCore/raw/master/images/elmah-4.png)
 
 ## Method Parameter Logging
 
@@ -145,7 +145,7 @@ public void TestMethod(string p1, int p2)
 }
 ```
 
-![Parameters](https://github.com/lawrence8358/Elmah.Core/raw/master/images/elmah-5.png)
+![Parameters](https://github.com/lawrence8358/ElmahLog.NetCore/raw/master/images/elmah-5.png)
 
 ## Developer Exception Page
 
@@ -202,9 +202,9 @@ See more at [elmah.github.io](https://elmah.github.io/a/error-filtering/examples
 
 Since v2.2.0 — full-text search and multi-column filtering.
 
-![Filters 1](https://github.com/lawrence8358/Elmah.Core/raw/master/images/elmah-filters-1.png)
-![Filters 2](https://github.com/lawrence8358/Elmah.Core/raw/master/images/elmah-filters-2.png)
-![Filters 3](https://github.com/lawrence8358/Elmah.Core/raw/master/images/elmah-filters-3.png)
+![Filters 1](https://github.com/lawrence8358/ElmahLog.NetCore/raw/master/images/elmah-filters-1.png)
+![Filters 2](https://github.com/lawrence8358/ElmahLog.NetCore/raw/master/images/elmah-filters-2.png)
+![Filters 3](https://github.com/lawrence8358/ElmahLog.NetCore/raw/master/images/elmah-filters-3.png)
 
 Currently supported by Memory and XmlFile error logs only.
 

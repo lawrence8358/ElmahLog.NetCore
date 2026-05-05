@@ -7,12 +7,12 @@
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <FileVersion>3.0.0.0</FileVersion>
     <AssemblyName>ElmahCore.Postgresql</AssemblyName>
-    <PackageId>Elmah.NetCore.Postgresql</PackageId>
+    <PackageId>ElmahLog.NetCore.Postgresql</PackageId>
     <Authors>Lawrence Shen</Authors>
-    <Product>Elmah.NetCore.Postgresql</Product>
+    <Product>ElmahLog.NetCore.Postgresql</Product>
     <NeutralLanguage>en-001</NeutralLanguage>
-    <PackageProjectUrl>https://github.com/lawrence8358/Elmah.Core</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/lawrence8358/Elmah.Core</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/lawrence8358/ElmahLog.NetCore</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/lawrence8358/ElmahLog.NetCore</RepositoryUrl>
     <PackageTags>elmah asp-net-core aspnetcore error-log postgresql pgsql npgsql</PackageTags>
     <Description>ELMAH for ASP.NET Core - PostgreSQL error log storage</Description>
     <Copyright>Copyright © Lawrence Shen</Copyright>
@@ -20,6 +20,8 @@
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <!-- Npgsql 8.0.9: last release with netstandard2.0 support -->
@@ -38,6 +40,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ElmahCore\ElmahCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>

@@ -7,12 +7,12 @@
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <FileVersion>3.0.0.0</FileVersion>
     <AssemblyName>ElmahCore.Mvc</AssemblyName>
-    <PackageId>Elmah.NetCore</PackageId>
+    <PackageId>ElmahLog.NetCore</PackageId>
     <Authors>Lawrence Shen</Authors>
-    <Product>Elmah.NetCore</Product>
+    <Product>ElmahLog.NetCore</Product>
     <NeutralLanguage>en-001</NeutralLanguage>
-    <PackageProjectUrl>https://github.com/lawrence8358/Elmah.Core</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/lawrence8358/Elmah.Core</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/lawrence8358/ElmahLog.NetCore</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/lawrence8358/ElmahLog.NetCore</RepositoryUrl>
     <PackageTags>elmah asp-net-core aspnetcore error-log exception-logging middleware</PackageTags>
     <Description>ELMAH for ASP.NET Core - Error Logging Modules and Handlers</Description>
     <Copyright>Copyright © Lawrence Shen</Copyright>
@@ -20,6 +20,8 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -61,6 +63,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ElmahCore\ElmahCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>
