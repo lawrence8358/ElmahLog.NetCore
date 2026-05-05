@@ -7,9 +7,9 @@
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <FileVersion>3.0.0.0</FileVersion>
     <AssemblyName>ElmahCore.Mvc</AssemblyName>
-    <PackageId>Elmah.Core</PackageId>
+    <PackageId>Elmah.NetCore</PackageId>
     <Authors>Lawrence Shen</Authors>
-    <Product>Elmah.Core</Product>
+    <Product>Elmah.NetCore</Product>
     <NeutralLanguage>en-001</NeutralLanguage>
     <PackageProjectUrl>https://github.com/lawrence8358/Elmah.Core</PackageProjectUrl>
     <RepositoryUrl>https://github.com/lawrence8358/Elmah.Core</RepositoryUrl>

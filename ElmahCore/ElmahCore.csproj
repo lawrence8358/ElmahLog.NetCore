@@ -1,1 +1,47 @@
-<Project Sdk="Microsoft.NET.Sdk"><PropertyGroup><TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks><LangVersion>8.0</LangVersion><Version>3.0.0</Version><AssemblyVersion>3.0.0.0</AssemblyVersion><FileVersion>3.0.0.0</FileVersion><AssemblyName>ElmahCore</AssemblyName><PackageId>Elmah.Core.Common</PackageId><Authors>Lawrence Shen</Authors><Product>Elmah.Core</Product><NeutralLanguage>en-001</NeutralLanguage><PackageProjectUrl>https://github.com/lawrence8358/Elmah.Core</PackageProjectUrl><RepositoryUrl>https://github.com/lawrence8358/Elmah.Core</RepositoryUrl><PackageTags>elmah asp-net-core aspnetcore error-log exception-logging</PackageTags><Description>ELMAH for ASP.NET Core - Error Logging base library</Description><Copyright>Copyright c Lawrence Shen</Copyright><RootNamespace>ElmahCore</RootNamespace><GeneratePackageOnBuild>true</GeneratePackageOnBuild><PublishRepositoryUrl>true</PublishRepositoryUrl><IncludeSymbols>true</IncludeSymbols><SymbolPackageFormat>snupkg</SymbolPackageFormat><UserSecretsId>c3a38668-74c2-494f-b54d-1a06c261f315</UserSecretsId></PropertyGroup><ItemGroup><Compile Remove="Error2.cs" /></ItemGroup><ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'"><PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" /><PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" /><PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" /><PackageReference Include="Microsoft.Extensions.Options" Version="8.0.2" /><PackageReference Include="System.Text.Json" Version="8.0.6" /></ItemGroup><ItemGroup Condition="'$(TargetFramework)' != 'netstandard2.0'"><FrameworkReference Include="Microsoft.AspNetCore.App" /></ItemGroup><ItemGroup><PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.203" PrivateAssets="All" /></ItemGroup></Project>
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
+    <LangVersion>8.0</LangVersion>
+    <Version>3.0.0</Version>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+    <FileVersion>3.0.0.0</FileVersion>
+    <AssemblyName>ElmahCore</AssemblyName>
+    <PackageId>Elmah.NetCore.Common</PackageId>
+    <Authors>Lawrence Shen</Authors>
+    <Product>Elmah.NetCore</Product>
+    <NeutralLanguage>en-001</NeutralLanguage>
+    <PackageProjectUrl>https://github.com/lawrence8358/Elmah.Core</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/lawrence8358/Elmah.Core</RepositoryUrl>
+    <PackageTags>elmah asp-net-core aspnetcore error-log exception-logging</PackageTags>
+    <Description>ELMAH for ASP.NET Core - Error Logging base library</Description>
+    <Copyright>Copyright c Lawrence Shen</Copyright>
+    <RootNamespace>ElmahCore</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <UserSecretsId>c3a38668-74c2-494f-b54d-1a06c261f315</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Error2.cs" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.2" />
+    <PackageReference Include="System.Text.Json" Version="8.0.6" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' != 'netstandard2.0'">
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.203" PrivateAssets="All" />
+  </ItemGroup>
+
+</Project>

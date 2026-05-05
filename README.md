@@ -1,10 +1,10 @@
 This project is licensed under the terms of the Apache License 2.0.
 
-# Elmah.Core
+# Elmah.NetCore
 
 ELMAH for ASP.NET Core (.NET Standard 2.0 / .NET 8+)
 
-> **Forked from [ElmahCore/ElmahCore](https://github.com/ElmahCore/ElmahCore)** and republished as `Elmah.Core` v3.0.0 with updated dependencies, security fixes, and .NET 8/10 support.
+> **Forked from [ElmahCore/ElmahCore](https://github.com/ElmahCore/ElmahCore)** and republished as `Elmah.NetCore` v3.0.0 with updated dependencies, security fixes, and .NET 8/10 support.
 
 ![Elmah.Core UI](https://github.com/lawrence8358/Elmah.Core/raw/master/images/elmah-new-ui.png)
 
@@ -13,16 +13,16 @@ ELMAH for ASP.NET Core (.NET Standard 2.0 / .NET 8+)
 Install the main NuGet package:
 
 ```
-dotnet add package Elmah.Core
+dotnet add package Elmah.NetCore
 ```
 
 Optional storage providers:
 
 | Package | Storage |
 |---|---|
-| [Elmah.Core.Sql](https://www.nuget.org/packages/Elmah.Core.Sql) | MS SQL Server |
-| [Elmah.Core.MySql](https://www.nuget.org/packages/Elmah.Core.MySql) | MySQL |
-| [Elmah.Core.Postgresql](https://www.nuget.org/packages/Elmah.Core.Postgresql) | PostgreSQL |
+| [Elmah.NetCore.Sql](https://www.nuget.org/packages/Elmah.NetCore.Sql) | MS SQL Server |
+| [Elmah.NetCore.MySql](https://www.nuget.org/packages/Elmah.NetCore.MySql) | MySQL |
+| [Elmah.NetCore.Postgresql](https://www.nuget.org/packages/Elmah.NetCore.Postgresql) | PostgreSQL |
 
 ## Supported Frameworks
 
@@ -73,9 +73,9 @@ class MyErrorLog : ErrorLog { ... }
 Built-in options:
 - `MemoryErrorLog` — in-memory (default)
 - `XmlFileErrorLog` — XML files on disk
-- `SqlErrorLog` — MS SQL Server (requires `Elmah.Core.Sql`)
-- `MySqlErrorLog` — MySQL (requires `Elmah.Core.MySql`)
-- `PgsqlErrorLog` — PostgreSQL (requires `Elmah.Core.Postgresql`)
+- `SqlErrorLog` — MS SQL Server (requires `Elmah.NetCore.Sql`)
+- `MySqlErrorLog` — MySQL (requires `Elmah.NetCore.MySql`)
+- `PgsqlErrorLog` — PostgreSQL (requires `Elmah.NetCore.Postgresql`)
 
 ```csharp
 services.AddElmah<XmlFileErrorLog>(options =>
@@ -104,7 +104,7 @@ public IActionResult Test()
 
 ## Microsoft.Extensions.Logging Support
 
-Since v2.0, Elmah.Core integrates with `Microsoft.Extensions.Logging`.
+Since v2.0, Elmah.NetCore integrates with `Microsoft.Extensions.Logging`.
 
 ![Logging](https://github.com/lawrence8358/Elmah.Core/raw/master/images/elmah-log.png)
 
@@ -124,11 +124,11 @@ services.AddElmah(options =>
 
 ## Log the Request Body
 
-Since v2.0.5, Elmah.Core can log the HTTP request body.
+Since v2.0.5, Elmah.NetCore can log the HTTP request body.
 
 ## SQL Query Logging
 
-Since v2.0.6, Elmah.Core intercepts and logs SQL commands via `DiagnosticSource`.
+Since v2.0.6, Elmah.NetCore intercepts and logs SQL commands via `DiagnosticSource`.
 
 ![SQL Log](https://github.com/lawrence8358/Elmah.Core/raw/master/images/elmah-4.png)
 

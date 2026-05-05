@@ -7,9 +7,9 @@
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <FileVersion>3.0.0.0</FileVersion>
     <AssemblyName>ElmahCore.Postgresql</AssemblyName>
-    <PackageId>Elmah.Core.Postgresql</PackageId>
+    <PackageId>Elmah.NetCore.Postgresql</PackageId>
     <Authors>Lawrence Shen</Authors>
-    <Product>Elmah.Core.Postgresql</Product>
+    <Product>Elmah.NetCore.Postgresql</Product>
     <NeutralLanguage>en-001</NeutralLanguage>
     <PackageProjectUrl>https://github.com/lawrence8358/Elmah.Core</PackageProjectUrl>
     <RepositoryUrl>https://github.com/lawrence8358/Elmah.Core</RepositoryUrl>
